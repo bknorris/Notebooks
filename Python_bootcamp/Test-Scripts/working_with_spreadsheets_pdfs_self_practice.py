@@ -18,8 +18,7 @@ data_lines = list(csv_data) # convert CSV to Python object
 # This gets all the emails from the CSV
 all_emails = []
 for counts, line in enumerate(data_lines[0:]):
-    text = line[counts]
-    all_emails.append(text)
+    all_emails.append(line[counts])
     
 html = ''.join(all_emails)
 
@@ -28,7 +27,7 @@ f = open(path + 'Find_the_Phone_Number.pdf',mode='rb') # read file
 pdf_reader = PyPDF2.PdfFileReader(f) # open as an object
 
 phone_number = []
-for page in range(1,17):
+for page in range(pdf_reader.numPages):
     page_text = pdf_reader.getPage(page)
     page_text = page_text.extractText()
     pattern = r'\d{3}[-.]\d{3}[-.]\d{4}'
